@@ -120,8 +120,9 @@ public class GameManager : MonoBehaviour
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySound("Chime", 1, 1f, 0f,1f);
-                AudioManager.Instance.PlaySound("Player1Wins", 1, 1f, 1.6f,1f);
-                AudioManager.Instance.PlaySound("TaDa", 1, 1f, 5f,1f);
+                AudioManager.Instance.PlaySound("TaDa", 1, 1f, 0.7f,1f);
+                AudioManager.Instance.PlaySound("Player1Wins", 1, 1f, 1.2f,1f);
+          
             }
             Debug.Log("Loading back to start scene.");
         }
@@ -136,8 +137,8 @@ public class GameManager : MonoBehaviour
            if (AudioManager.Instance != null)
            {
                AudioManager.Instance.PlaySound("Chime", 1, 1f, 0f,1f);
-               AudioManager.Instance.PlaySound("Player2Wins", 1, 1f, 0.5f,1f);  
-               AudioManager.Instance.PlaySound("TaDa", 1, 1f, 5f,1f); 
+               AudioManager.Instance.PlaySound("TaDa", 1, 1f, 0.7f,1f);
+               AudioManager.Instance.PlaySound("Player2Wins", 1, 1f, 1.2f,1f);
            }
            Debug.Log("Loading back to start scene.");
     
