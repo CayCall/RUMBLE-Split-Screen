@@ -12,6 +12,8 @@ public class ControllerMenuNavigator : MonoBehaviour
 
     private Color normalColor = Color.white;
     private Color highlightedColor = Color.red;
+    private float inputCooldown = 0.2f;
+    private float nextInputTime = 0f;
 
     void Start()
     {
@@ -26,17 +28,19 @@ public class ControllerMenuNavigator : MonoBehaviour
 
     void Update()
     {
-        if (gamepad != null)
+        if (gamepad != null && Time.time >= nextInputTime)
         {
             Vector2 dpadInput = gamepad.dpad.ReadValue();
 
-            if (dpadInput.y > 0)
+            if (dpadInput.y > 0.5f)
             {
                 NavigateUp();
+                nextInputTime = Time.time + inputCooldown;
             }
-            else if (dpadInput.y < 0)
+            else if (dpadInput.y < -0.5f)
             {
                 NavigateDown();
+                nextInputTime = Time.time + inputCooldown;
             }
         }
     }
@@ -57,25 +61,30 @@ public class ControllerMenuNavigator : MonoBehaviour
 
     void SelectButton(int index)
     {
-
         Debug.Log("Selected Button Index: " + index);
+    
         if (index >= 0 && index < menuButtons.Length)
         {
             DeselectAllButtons();
-            Button selectedButton = menuButtons[index].GetComponent<Button>();
+
+            GameObject selectedObj = menuButtons[index];
+            eventSystem.SetSelectedGameObject(selectedObj);
+
+            Button selectedButton = selectedObj.GetComponent<Button>();
             if (selectedButton != null)
             {
-                ColorBlock colorBlock = selectedButton.colors;
-                colorBlock.highlightedColor = highlightedColor;
-                selectedButton.colors = colorBlock;
+           
+                if (selectedButton.transition != Selectable.Transition.ColorTint)
+                    selectedButton.transition = Selectable.Transition.ColorTint;
 
-                selectedButton.Select();
-                selectedButton.OnSelect(null);
+
+                ExecuteEvents.Execute(selectedObj, new BaseEventData(eventSystem), ExecuteEvents.selectHandler);
             }
         }
     }
 
-    void DeselectAllButtons()
+
+   void DeselectAllButtons()
     {
         foreach (GameObject buttonObj in menuButtons)
         {
@@ -84,6 +93,7 @@ public class ControllerMenuNavigator : MonoBehaviour
             {
                 ColorBlock colorBlock = button.colors;
                 colorBlock.highlightedColor = normalColor;
+                button.colors = colorBlock;  
             }
         }
     }
