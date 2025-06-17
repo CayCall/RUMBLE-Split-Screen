@@ -35,5 +35,9 @@ public class ControllerLoadingMenuNav : MonoBehaviour
          yield return new WaitForSeconds(0.5f);
         SceneManage.smInstance.LoadStartScene(); 
     }
-    
+
+     private void onGui()
+     {
+         
+     }
 }
