@@ -5525,7 +5525,7 @@ MonoBehaviour:
         z: 3.226638
       Rotation:
         value:
-          x: 0.5659135
+          x: 0.5659136
           y: -0.5194968
           z: 0.56697154
           w: -0.29733515
@@ -16712,7 +16712,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1364222517630042589}
+  m_Camera: {fileID: 1859506488146614561}
   m_PlaneDistance: 0.3
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -21616,6 +21616,7 @@ GameObject:
   - component: {fileID: 2046321188}
   - component: {fileID: 2046321187}
   - component: {fileID: 2046321186}
+  - component: {fileID: 2046321190}
   m_Layer: 10
   m_Name: Player 2 Canvas
   m_TagString: Untagged
@@ -21673,7 +21674,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 5694778333413896884}
+  m_Camera: {fileID: 679962333499126579}
   m_PlaneDistance: 0.3
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -21706,6 +21707,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2046321190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046321185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39779b893d541d74986dabfb71f22112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1608843151}
+  playerCamera: {fileID: 679962333499126579}
+  arrowUI: {fileID: 1782149868}
+  canvas: {fileID: 2046321188}
+  edgeBuffer: 50
+  worldOffset: {x: 0, y: 2, z: 0}
+  positionSmoothing: 10
+  rotationSmoothing: 10
 --- !u!1001 &2047773481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22934,11 +22955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f4dbb969b8ab3458ac1c6811579578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1364222517630042589 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5020923274827198020, guid: fb35581b2ad1b6d4a91d96fc7fd99d13, type: 3}
-  m_PrefabInstance: {fileID: 823837597650117684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1859506488146614561 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8640551355859740529, guid: fb35581b2ad1b6d4a91d96fc7fd99d13, type: 3}
@@ -23028,11 +23044,6 @@ PrefabInstance:
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 627756236131259485, guid: fb35581b2ad1b6d4a91d96fc7fd99d13, type: 3}
   m_PrefabInstance: {fileID: 823837597650117684}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &5694778333413896884 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2046376450469493739, guid: fa385697248016c4e91bdc09109441c8, type: 3}
-  m_PrefabInstance: {fileID: 3787127370625304703}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5696387947340185471 stripped
 GameObject:
