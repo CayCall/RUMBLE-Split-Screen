@@ -11,7 +11,9 @@ public class TileController : MonoBehaviour
     private Vector3 targetScale;
     private Vector3 targetPosition;
     private bool isMoving = false;
-    private float countdown = 2f;
+
+    private float cooldownDuration = 2f; // Default cooldown time
+    private float countdown = 2f;        // Countdown tracker
 
     public float raycastDistance;
     public Material HoverMaterial;
@@ -23,8 +25,7 @@ public class TileController : MonoBehaviour
     public GameObject Camera;
     public GameObject SmokeVfx;
     public PlayerInput PlayerInput;
-    
-    
+
     private Color originalColor;
     private bool isHovering = false;
 
@@ -37,8 +38,8 @@ public class TileController : MonoBehaviour
     private void Start()
     {
         // Subscribe to input actions
-        PlayerInput.actions["TileUp"].performed += ctx => MoveTile(true);  // tile up is the right trigger & C on KBM
-        PlayerInput.actions["TileDown"].performed += ctx => MoveTile(false); // tile down is the left trigger & V on KBM
+        PlayerInput.actions["TileUp"].performed += ctx => MoveTile(true);
+        PlayerInput.actions["TileDown"].performed += ctx => MoveTile(false);
     }
 
     void Update()
@@ -71,13 +72,13 @@ public class TileController : MonoBehaviour
                     PrevHitObject = null;
                 }
             }
-
         }
-        
+
         if (isMoving)
         {
-            CooldownSlider.gameObject.active = true;
+            CooldownSlider.gameObject.SetActive(true);
             CooldownSlider.value = countdown;
+
             if (countdown > 0)
             {
                 countdown -= Time.deltaTime;
@@ -87,12 +88,11 @@ public class TileController : MonoBehaviour
             else
             {
                 isMoving = false;
-                countdown = 2f;
-                CooldownSlider.gameObject.active = false;
+                countdown = cooldownDuration; // Use the adjustable cooldown
+                CooldownSlider.gameObject.SetActive(false);
             }
         }
     }
-    
 
     private void MoveTile(bool moveUp)
     {
@@ -111,14 +111,14 @@ public class TileController : MonoBehaviour
                 targetScale.z += 15;
                 PlayerAnimator.SetBool("IsLifting", true);
                 StartCoroutine(AnimationStop(0.5f));
-                AudioManager.Instance.PlaySound("ROCK RISING", 1 , 0.7f, 0f, 1.5f);
+                AudioManager.Instance.PlaySound("ROCK RISING", 1, 0.7f, 0f, 1.5f);
             }
             else
             {
                 targetScale.z -= 15;
                 PlayerAnimator.SetBool("IsLowering", true);
                 StartCoroutine(AnimationStop(0.5f));
-                AudioManager.Instance.PlaySound("ROCK LOWERING", 1 , 0.7f, 0f, 1.2f);
+                AudioManager.Instance.PlaySound("ROCK LOWERING", 1, 0.7f, 0f, 1.2f);
             }
 
             targetPosition = new Vector3(SelectedTile.transform.position.x, targetScale.z * 0.0397325f, SelectedTile.transform.position.z);
@@ -128,12 +128,11 @@ public class TileController : MonoBehaviour
         {
             Debug.Log("You cannot move the tile you're on");
         }
-            
     }
 
-    IEnumerator AnimationStop(float Seconds)
+    IEnumerator AnimationStop(float seconds)
     {
-        yield return new WaitForSeconds(Seconds);
+        yield return new WaitForSeconds(seconds);
         PlayerAnimator.SetBool("IsLifting", false);
         PlayerAnimator.SetBool("IsLowering", false);
     }
@@ -157,5 +156,16 @@ public class TileController : MonoBehaviour
         {
             ActiveTile = null;
         }
+    }
+
+    // Get/Set for external scripts like powerups
+    public float GetCooldown()
+    {
+        return cooldownDuration;
+    }
+
+    public void SetCooldown(float newCooldown)
+    {
+        cooldownDuration = newCooldown;
     }
 }

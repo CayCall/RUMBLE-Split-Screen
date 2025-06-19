@@ -219,4 +219,24 @@ public class Player2Controller : MonoBehaviour
         }
 
     }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void SetMoveSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
+    }
+
+    public float GetJumpForce()
+    {
+        return jumpForce;
+    }
+
+    public void SetJumpForce(float newForce)
+    {
+        jumpForce = newForce;
+    }
 }
