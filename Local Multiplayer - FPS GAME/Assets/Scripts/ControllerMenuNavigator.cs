@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ControllerMenuNavigator : MonoBehaviour
 {
@@ -14,9 +15,15 @@ public class ControllerMenuNavigator : MonoBehaviour
     private Color highlightedColor = Color.red;
     private float inputCooldown = 0.2f;
     private float nextInputTime = 0f;
-
+    
+    public GameObject startPanel;
+    public GameObject patchNotesPanel;
+    
+   [SerializeField]private GameObject currentPanel;
+   [SerializeField]private GameObject previousPanel;
     void Start()
     {
+        currentPanel = startPanel;
         eventSystem = EventSystem.current;
         gamepad = Gamepad.current;
 
@@ -42,6 +49,13 @@ public class ControllerMenuNavigator : MonoBehaviour
                 NavigateDown();
                 nextInputTime = Time.time + inputCooldown;
             }
+        }
+      
+        if ((Keyboard.current.escapeKey.wasPressedThisFrame || gamepad.buttonEast.wasPressedThisFrame) && currentPanel == patchNotesPanel)
+        {
+            Debug.Log("working");
+            GoBackToStart();
+            
         }
     }
 
@@ -97,5 +111,23 @@ public class ControllerMenuNavigator : MonoBehaviour
             }
         }
     }
+    void GoBackToStart()
+    {
+        if (startPanel != null && patchNotesPanel != null)
+        {
+            patchNotesPanel.SetActive(false);
+            startPanel.SetActive(true);
 
+            currentPanel = startPanel;
+            previousPanel = patchNotesPanel;
+
+
+            menuButtons = startPanel.GetComponentsInChildren<Button>(true)
+                .Select(b => b.gameObject)
+                .ToArray();
+
+            currentSelectionIndex = 0;
+            SelectButton(currentSelectionIndex);
+        }
+    }
 }
