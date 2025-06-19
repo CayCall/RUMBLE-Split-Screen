@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2389414}
   - component: {fileID: -3424198775478625289}
   - component: {fileID: -6068410806401441808}
+  - component: {fileID: -6317562467043238403}
   m_Layer: 0
   m_Name: Arrows Green
   m_TagString: Untagged
@@ -123,4 +124,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpBoostAmount: 5
-  boostDuration: 5
+  boostDuration: 4
+--- !u!95 &-6317562467043238403
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189414}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c955dca7ee020ee46acfb8f495ed5576, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

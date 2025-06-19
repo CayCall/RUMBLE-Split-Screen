@@ -27,8 +27,16 @@ public class SpeedBoostPickup : MonoBehaviour
         // If we found a valid player script, apply the boost
         if (playerScript != null)
         {
-            StartCoroutine(ApplySpeedBoost(playerScript));
-            gameObject.SetActive(false); // Disable pickup after use
+            StartCoroutine(ApplySpeedBoost(playerScript));// Disable only the collider to prevent further pickups
+            Collider collider = GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+
+            // Optionally, disable the visual part of the pickup (like a sprite, etc.)
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer != null) renderer.enabled = false;
         }
     }
 

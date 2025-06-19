@@ -238,5 +238,6 @@ public class Player2Controller : MonoBehaviour
     public void SetJumpForce(float newForce)
     {
         jumpForce = newForce;
+        Debug.Log("Jump force set to: " + jumpForce);
     }
 }

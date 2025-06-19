@@ -5,6 +5,8 @@ public class JumpBoostPickup : MonoBehaviour
     [Header("Jump Boost Settings")]
     public float jumpBoostAmount = 5f;
     public float boostDuration = 5f;
+    public GameObject Player1Overlay;
+    public GameObject Player2Overlay;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +29,20 @@ public class JumpBoostPickup : MonoBehaviour
         if (playerScript != null)
         {
             StartCoroutine(ApplyJumpBoost(playerScript));
-            gameObject.SetActive(false); // Disable pickup after use
+
+            // Disable only the collider to prevent further pickups
+            Collider collider = GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+
+            // Optionally, disable the visual part of the pickup (like a sprite, etc.)
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer != null) renderer.enabled = false;
         }
     }
+
 
     private System.Collections.IEnumerator ApplyJumpBoost(MonoBehaviour playerScript)
     {
@@ -48,6 +61,7 @@ public class JumpBoostPickup : MonoBehaviour
             player2.SetJumpForce(originalJump + jumpBoostAmount);
             yield return new WaitForSeconds(boostDuration);
             player2.SetJumpForce(originalJump);
+            Debug.Log("Player Two Original Jump" + originalJump);
         }
 
         Destroy(gameObject); // Optional: delete the pickup

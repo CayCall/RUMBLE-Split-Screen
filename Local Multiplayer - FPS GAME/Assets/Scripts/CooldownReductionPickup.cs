@@ -14,7 +14,16 @@ public class CooldownReductionPickup : MonoBehaviour
         if (tileController != null)
         {
             StartCoroutine(ApplyCooldownReduction(tileController));
-            gameObject.SetActive(false); // Hide or disable the pickup visually
+            // Disable only the collider to prevent further pickups
+            Collider collider = GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+
+            // Optionally, disable the visual part of the pickup (like a sprite, etc.)
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer != null) renderer.enabled = false;
         }
     }
 
