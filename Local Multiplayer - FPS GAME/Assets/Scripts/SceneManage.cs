@@ -23,7 +23,7 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private float timer = 0f;
     [SerializeField] private int currentTime = 0;
     [SerializeField] private bool isLoaded = false;
-    private bool isLoading = false; 
+    [SerializeField] private bool isLoading = false; 
 
     private void Start()
     {

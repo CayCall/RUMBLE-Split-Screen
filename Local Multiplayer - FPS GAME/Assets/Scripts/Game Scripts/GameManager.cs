@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     
     [Header("LiveGame Checks")]
     [Header("Scenes")]
-    public bool isSceneLoading = false; 
+    [SerializeField]public bool isSceneLoading = false; 
     [Header("LiveTimer")]
     [SerializeField]private float timer = 0f; 
     [SerializeField]private int currentTime = 0;
@@ -47,8 +47,8 @@ public class GameManager : MonoBehaviour
     private bool player1Halfway = false;
     private bool player2Halfway = false;
     [Header("Endgame")]
-    public bool hasWon = false;
-    public bool hasDied = false;
+    [SerializeField]public bool hasWon = false;
+    [SerializeField]public bool hasDied = false;
 
 
 
@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
         Canvas.SetActive(false);
         AudioManager.Instance.PlaySound("Tiles Rising", 1 , 0.5f, 0f, 1.5f);
         AudioManager.Instance.PlaySound("Announcer - Start", 1 , 0.5f, 5.5f, 1f);
-
-        
     }
 
     private void Update()

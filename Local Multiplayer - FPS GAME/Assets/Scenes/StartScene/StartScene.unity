@@ -2206,7 +2206,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "- <color=#FFC436>*NEW* </color> Configured Player Controls -\n   Players
     will now choose to play as\n   Keyboard and Mouse (Player 1) or  \n   Controller 
-    (Player 2) \n- <color=#FFC436>*NEW*</color> Added Player Hand Toss - \n   Players
+    (Player 2) \n\n- <color=#FFC436>*NEW*</color> Added Player Hand Toss - \n   Players
     can now throw objects at\n   each other (\"R1-RB\" Controller / \"X\"\n   Keyboard)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
@@ -4351,8 +4351,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
-  m_sharedMaterial: {fileID: -2713101441630993396, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cc6bd6ee353196c4091a23fb4d8aaa25, type: 2}
+  m_sharedMaterial: {fileID: -2713101441630993396, guid: cc6bd6ee353196c4091a23fb4d8aaa25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4713,8 +4713,6 @@ MonoBehaviour:
   - {fileID: 33729877}
   startPanel: {fileID: 46339869}
   patchNotesPanel: {fileID: 2142330049}
-  currentPanel: {fileID: 0}
-  previousPanel: {fileID: 0}
 --- !u!4 &1106502196
 Transform:
   m_ObjectHideFlags: 0
@@ -5139,8 +5137,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: <- Back
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
-  m_sharedMaterial: {fileID: -2713101441630993396, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cc6bd6ee353196c4091a23fb4d8aaa25, type: 2}
+  m_sharedMaterial: {fileID: -2713101441630993396, guid: cc6bd6ee353196c4091a23fb4d8aaa25, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7954,8 +7952,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.74509805, b: 0.33333334, a: 1}
+    m_PressedColor: {r: 1, g: 0.6807714, b: 0.16509432, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7988,7 +7986,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1278201744}
+      - m_Target: {fileID: 46339869}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -8097,7 +8095,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: "- <color=#FFC436>*NEW* </color> Added Speed Boost: Player that \n   collides
     with power up will \n   get a 4 second speed boost after\n   interacting with
-    speed boost pickup\n- <color=#FFC436>*NEW*</color> Added Jump Boost: \n"
+    speed boost pickup\n\n- <color=#FFC436>*NEW*</color> Added Cooldown Boost:  Player
+    \n   that collides with power up will \n   get a 4 second cooldown boost, \n  
+    allowing that player to jump higher\n\n- <color=#FFC436>*NEW*</color> Added Cooldown
+    Boost:  Player\n   that collides with power up will \n   get a 4 second Jump
+    boost, allowing\n   that player to jump higher\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
   m_sharedMaterial: {fileID: -2713101441630993396, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
@@ -9298,6 +9300,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1106502195}
+        m_TargetAssemblyTypeName: ControllerMenuNavigator, Assembly-CSharp
+        m_MethodName: OnPatchNotesClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

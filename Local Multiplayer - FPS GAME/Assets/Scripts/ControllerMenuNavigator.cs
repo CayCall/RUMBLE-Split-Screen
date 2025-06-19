@@ -18,15 +18,14 @@ public class ControllerMenuNavigator : MonoBehaviour
     
     public GameObject startPanel;
     public GameObject patchNotesPanel;
-    
-   [SerializeField]private GameObject currentPanel;
-   [SerializeField]private GameObject previousPanel;
+
+    private bool isPatchNotesActive = false;
+
     void Start()
     {
-        currentPanel = startPanel;
+      
         eventSystem = EventSystem.current;
         gamepad = Gamepad.current;
-
         if (menuButtons.Length > 0)
         {
             SelectButton(currentSelectionIndex);
@@ -50,12 +49,11 @@ public class ControllerMenuNavigator : MonoBehaviour
                 nextInputTime = Time.time + inputCooldown;
             }
         }
-      
-        if ((Keyboard.current.escapeKey.wasPressedThisFrame || gamepad.buttonEast.wasPressedThisFrame) && currentPanel == patchNotesPanel)
+        
+        if ((Keyboard.current.escapeKey.wasPressedThisFrame || gamepad.buttonEast.wasPressedThisFrame) 
+            && patchNotesPanel.activeSelf)
         {
-            Debug.Log("working");
             GoBackToStart();
-            
         }
     }
 
@@ -85,12 +83,11 @@ public class ControllerMenuNavigator : MonoBehaviour
             eventSystem.SetSelectedGameObject(selectedObj);
 
             Button selectedButton = selectedObj.GetComponent<Button>();
-            if (selectedButton != null)
+            if (selectedButton != null && selectedButton.onClick != null)
             {
            
                 if (selectedButton.transition != Selectable.Transition.ColorTint)
                     selectedButton.transition = Selectable.Transition.ColorTint;
-
 
                 ExecuteEvents.Execute(selectedObj, new BaseEventData(eventSystem), ExecuteEvents.selectHandler);
             }
@@ -111,23 +108,26 @@ public class ControllerMenuNavigator : MonoBehaviour
             }
         }
     }
-    void GoBackToStart()
+   
+    public void GoBackToStart()
     {
-        if (startPanel != null && patchNotesPanel != null)
-        {
-            patchNotesPanel.SetActive(false);
-            startPanel.SetActive(true);
+        patchNotesPanel.SetActive(false);
+        startPanel.SetActive(true);
 
-            currentPanel = startPanel;
-            previousPanel = patchNotesPanel;
-
-
-            menuButtons = startPanel.GetComponentsInChildren<Button>(true)
-                .Select(b => b.gameObject)
-                .ToArray();
-
-            currentSelectionIndex = 0;
-            SelectButton(currentSelectionIndex);
-        }
+        menuButtons = startPanel.GetComponentsInChildren<Button>(true)
+            .Select(b => b.gameObject)
+            .ToArray();
+        currentSelectionIndex = 0;
+        SelectButton(currentSelectionIndex);
+    }
+    public void OnPatchNotesClicked()
+    {
+        startPanel.SetActive(false);
+        patchNotesPanel.SetActive(true);
+        menuButtons = patchNotesPanel.GetComponentsInChildren<Button>(true)
+            .Select(b => b.gameObject)
+            .ToArray();
+        currentSelectionIndex = 0;
+        SelectButton(currentSelectionIndex);
     }
 }
