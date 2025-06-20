@@ -54,7 +54,10 @@ public class Player2Controller : MonoBehaviour
     public Transform groundCheck;
     public Animator PlayerAnimator;
     #endregion
-
+    [Header("Throwable")]
+    public Transform playerThrowTransform;
+    public GameObject[] throwablePrefabs; 
+    public float throwForce = 10f;
     
     private void Awake()
     {
@@ -78,6 +81,9 @@ public class Player2Controller : MonoBehaviour
 
         // Handle player jump
         playerInput.actions["Jump"].performed += ctx => jumpInput = true;
+                
+        //Handle Player Throw
+        playerInput.actions["ThrowItem"].performed += ctx => HandleThrowable();
     }
 
     private void FixedUpdate()
@@ -157,7 +163,7 @@ public class Player2Controller : MonoBehaviour
 
         if (isGrounded)
         {
-            if (wasInAir)
+            if (wasInAir && rb.linearVelocity.y < -3f)
             {
                 StartCoroutine(TriggerRumble(0.2f, 0.8f, 0.175f)); 
             }
@@ -204,7 +210,31 @@ public class Player2Controller : MonoBehaviour
             }
         }
     }
+    private void HandleThrowable()
+    {
+        if (throwablePrefabs.Length == 0 || playerThrowTransform == null)
+        {
+            Debug.LogWarning("Missing throwable prefabs or throw transform.");
+            return;
+        }
 
+        AudioManager.Instance.RandomiseActionSound("throw", 1, 1f, 0f, 1f);
+        int randomIndex = UnityEngine.Random.Range(0, throwablePrefabs.Length);
+        GameObject chosenPrefab = throwablePrefabs[randomIndex];
+
+
+        Quaternion throwRotation = Quaternion.LookRotation(playerThrowTransform.forward, Vector3.up);
+
+        GameObject throwable = Instantiate(chosenPrefab, playerThrowTransform.position, throwRotation);
+        
+
+        Rigidbody rb = throwable.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddForce(playerThrowTransform.forward * throwForce, ForceMode.Impulse);
+        }
+
+    }
     private IEnumerator TriggerRumble(float lowFrequency, float highFrequency, float duration)
     {
         if (isController)
