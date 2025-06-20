@@ -167,5 +167,12 @@ public class Player2TileController : MonoBehaviour
     public void SetCooldown(float newCooldown)
     {
         cooldownDuration = newCooldown;
+
+        // If not in the middle of a cooldown, update the countdown immediately
+        if (!isMoving)
+        {
+            countdown = newCooldown;
+        }
     }
+
 }
