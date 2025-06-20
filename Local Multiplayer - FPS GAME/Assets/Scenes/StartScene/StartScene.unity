@@ -8095,11 +8095,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "- <color=#FFC436>*NEW* </color> Added Speed Boost: Player that \n   collides
     with power up will \n   get a 4 second speed boost after\n   interacting with
-    speed boost pickup\n\n- <color=#FFC436>*NEW*</color> Added Cooldown Boost:  Player
+    speed boost pickup\n\n- <color=#FFC436>*NEW*</color> Added Jump Boost:  Player
     \n   that collides with power up will \n   get a 4 second cooldown boost, \n  
     allowing that player to jump higher\n\n- <color=#FFC436>*NEW*</color> Added Cooldown
-    Boost:  Player\n   that collides with power up will \n   get a 4 second Jump
-    boost, allowing\n   that player to jump higher\n"
+    Boost:  Player\n   that collides with power up will \n   get a 4 second cooldown
+    boost, \n   allowing that player to have a \n   shortened cool down period for
+    \n   moving tiles.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
   m_sharedMaterial: {fileID: -2713101441630993396, guid: 0895108f37097ba4caf2b14037b9b3c4, type: 2}
@@ -10250,7 +10251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2142330050
 RectTransform:
   m_ObjectHideFlags: 0
