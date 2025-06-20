@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Random = System.Random;
+
 
 public class SceneManage : MonoBehaviour
 {
@@ -70,22 +72,23 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
     }
     
-   public void LoadMainScene()
+   public void LoadScene()
     {
         if (isLoaded || isLoading) 
         {
-            Debug.Log("Main Scene is already loading or has been loaded.");
+            Debug.Log("One of the scene is already loading or has been loaded.");
             return;
         }
 
         isLoading = true; 
-        StartCoroutine(WaitBeforeLoadingMain());
+        randomiseScene();
     }
 
     public void OnApplicationQuit()
     {
         Application.Quit();
-    }
+    }   
+    
     
     
     //using this for when player dies or touches the lava
@@ -99,9 +102,18 @@ public class SceneManage : MonoBehaviour
     //using this for when start button is click to delay the start animation
     private IEnumerator WaitBeforeLoadingMain()
     {
-        Debug.Log("Main scene is loading...");
+        Debug.Log("Main scene 1 is loading...");
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        isLoaded = true;
+        isLoading = false; 
+        Debug.Log("Game scene loaded.");
+    }
+    private IEnumerator WaitBeforeLoadingJungle()
+    {
+        Debug.Log("JungleScene is loading...");
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("GameSceneJungle", LoadSceneMode.Single);
         isLoaded = true;
         isLoading = false; 
         Debug.Log("Game scene loaded.");
@@ -117,5 +129,18 @@ public class SceneManage : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void randomiseScene()
+    {
+        float RandomNum = UnityEngine.Random.Range(1f,4f);
+        if (RandomNum >=3f )
+        {
+            StartCoroutine(WaitBeforeLoadingMain());
+        }
+        else
+        {
+            StartCoroutine(WaitBeforeLoadingJungle());
+        }
     }
 }
