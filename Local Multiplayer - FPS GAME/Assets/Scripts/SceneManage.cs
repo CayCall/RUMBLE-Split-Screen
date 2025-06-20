@@ -27,7 +27,7 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private int currentTime = 0;
     public bool isLoaded = false;
     public bool isLoading = false;
-    public PlayerInput playerInput;
+
 
     private void Start()
     {

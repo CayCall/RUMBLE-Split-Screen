@@ -5639,8 +5639,8 @@ MonoBehaviour:
         z: 3.226638
       Rotation:
         value:
-          x: 0.56591356
-          y: -0.51949674
+          x: 0.5659135
+          y: -0.5194968
           z: 0.56697154
           w: -0.29733515
     - Position:
@@ -23419,6 +23419,10 @@ PrefabInstance:
       propertyPath: CooldownSlider
       value: 
       objectReference: {fileID: 363994381}
+    - target: {fileID: 1043465851239115956, guid: fb35581b2ad1b6d4a91d96fc7fd99d13, type: 3}
+      propertyPath: raycastDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3569428759457332145, guid: fb35581b2ad1b6d4a91d96fc7fd99d13, type: 3}
       propertyPath: m_Name
       value: Player 1 Prefab
@@ -23507,6 +23511,10 @@ PrefabInstance:
       propertyPath: CooldownSlider
       value: 
       objectReference: {fileID: 1210189342}
+    - target: {fileID: 179716628580500724, guid: fa385697248016c4e91bdc09109441c8, type: 3}
+      propertyPath: raycastDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3545913366684598309, guid: fa385697248016c4e91bdc09109441c8, type: 3}
       propertyPath: m_Name
       value: Player 2 Prefab

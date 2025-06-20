@@ -25,7 +25,10 @@ public class ControllerMenuNavigator : MonoBehaviour
     {
       
         eventSystem = EventSystem.current;
-        gamepad = Gamepad.current;
+        if (Gamepad.all.Count > 0)
+        {
+            gamepad = Gamepad.current;
+        }
         if (menuButtons.Length > 0)
         {
             SelectButton(currentSelectionIndex);
@@ -34,6 +37,11 @@ public class ControllerMenuNavigator : MonoBehaviour
 
     void Update()
     {
+        if (gamepad == null && Gamepad.current != null)
+        {
+            gamepad = Gamepad.current;
+        }
+
         if (gamepad != null && Time.time >= nextInputTime)
         {
             Vector2 dpadInput = gamepad.dpad.ReadValue();
@@ -50,8 +58,10 @@ public class ControllerMenuNavigator : MonoBehaviour
             }
         }
         
-        if ((Keyboard.current.escapeKey.wasPressedThisFrame || gamepad.buttonEast.wasPressedThisFrame) 
-            && patchNotesPanel.activeSelf)
+        bool escPressed = Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame;
+        bool bPressed = gamepad != null && gamepad.buttonEast.wasPressedThisFrame;
+
+        if ((escPressed || bPressed) && patchNotesPanel.activeSelf)
         {
             GoBackToStart();
         }
