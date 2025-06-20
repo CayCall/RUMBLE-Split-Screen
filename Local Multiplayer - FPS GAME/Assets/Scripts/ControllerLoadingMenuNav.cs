@@ -24,6 +24,7 @@ public class ControllerLoadingMenuNav : MonoBehaviour
 
             if (controllerPressed || spacePressed)
             {
+                Debug.Log("sdlnfnskdfns");
                 StartCoroutine(skipLoadingMenu());
             }
         }
@@ -39,7 +40,8 @@ public class ControllerLoadingMenuNav : MonoBehaviour
         SceneManage.smInstance.isLoaded = false;
 
 
-        SceneManage.smInstance.LoadStartScene();
+        SceneManage.smInstance.LoadTutorialScene();
+        Debug.Log("kkkkkkkkkkkkkkkkkksdlnfnskdfns");
     }
 
      private void onGui()

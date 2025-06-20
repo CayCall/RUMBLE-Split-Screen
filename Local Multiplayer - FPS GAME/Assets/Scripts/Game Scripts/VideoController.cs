@@ -109,6 +109,14 @@ public class VideoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame ||
+           Gamepad.current?.startButton.wasPressedThisFrame == true ||
+           Gamepad.current?.selectButton.wasPressedThisFrame == true)
+        {
+            Debug.Log("Video skipped via input.");
+            SceneManager.LoadScene("StartScene");
+        }
+
         if (videoPlayer.isPlaying && videoPlayer.frame >= (long)videoPlayer.frameCount - 1)
         {
             Debug.Log("Video completed in Update!");

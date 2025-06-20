@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Random = System.Random;
+using UnityEngine.InputSystem;
 
 
 public class SceneManage : MonoBehaviour
@@ -25,7 +26,8 @@ public class SceneManage : MonoBehaviour
     [SerializeField] private float timer = 0f;
     [SerializeField] private int currentTime = 0;
     public bool isLoaded = false;
-    public bool isLoading = false; 
+    public bool isLoading = false;
+    public PlayerInput playerInput;
 
     private void Start()
     {
@@ -39,6 +41,15 @@ public class SceneManage : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "LoadingScene" && !isLoaded)
         {
+
+            if (Keyboard.current.escapeKey.wasPressedThisFrame ||
+               Gamepad.current?.startButton.wasPressedThisFrame == true ||
+               Gamepad.current?.selectButton.wasPressedThisFrame == true)
+            {
+                Debug.Log("Video skipped via input.");
+                SceneManager.LoadScene("TutorialScene");
+            }
+
             timer += Time.deltaTime;
             if (timer >= 1f)
             {
@@ -63,7 +74,7 @@ public class SceneManage : MonoBehaviour
     {
         isLoaded = false;
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
-        Debug.Log("StartScene is loading");
+        //Debug.Log("StartScene is loading");
     } 
 
     public void LoadTutorialScene()

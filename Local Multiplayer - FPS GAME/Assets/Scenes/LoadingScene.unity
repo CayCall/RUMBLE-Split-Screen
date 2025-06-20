@@ -2283,6 +2283,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkipText
       objectReference: {fileID: 0}
+    - target: {fileID: 3242095467498812194, guid: b2ee0990d124de045bf07c7956a625d0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340096820819132840, guid: b2ee0990d124de045bf07c7956a625d0, type: 3}
+      propertyPath: m_text
+      value: Press "Escape" or "Start" to skip
+      objectReference: {fileID: 0}
     - target: {fileID: 6734390610906979805, guid: b2ee0990d124de045bf07c7956a625d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
