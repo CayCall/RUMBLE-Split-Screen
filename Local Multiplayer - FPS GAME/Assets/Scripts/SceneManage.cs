@@ -74,6 +74,7 @@ public class SceneManage : MonoBehaviour
     {
         isLoaded = false;
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
+        Cursor.lockState = CursorLockMode.None;
         //Debug.Log("StartScene is loading");
     } 
 
@@ -81,6 +82,7 @@ public class SceneManage : MonoBehaviour
     {
         isLoaded = false;
         SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     public void LoadScene()
@@ -110,6 +112,7 @@ public class SceneManage : MonoBehaviour
         yield return new WaitForSeconds(15f);
         LoadStartScene();
         GameManager.gmInstance.isSceneLoading = false;
+        Cursor.lockState = CursorLockMode.None;
     }
     
     //using this for when start button is click to delay the start animation
@@ -121,6 +124,7 @@ public class SceneManage : MonoBehaviour
         isLoaded = true;
         isLoading = false; 
         Debug.Log("Game scene loaded.");
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private IEnumerator WaitBeforeLoadingJungle()
     {
@@ -130,6 +134,7 @@ public class SceneManage : MonoBehaviour
         isLoaded = true;
         isLoading = false; 
         Debug.Log("Game scene loaded.");
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
