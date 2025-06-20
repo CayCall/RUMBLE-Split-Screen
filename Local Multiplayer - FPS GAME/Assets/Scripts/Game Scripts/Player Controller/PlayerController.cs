@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
     public Transform playerThrowTransform;
     public GameObject[] throwablePrefabs; 
     public float throwForce = 10f;
+    [SerializeField] private float throwCooldown = 1.5f;
+    private bool canThrow = true;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -239,29 +241,38 @@ public class PlayerController : MonoBehaviour
 
     private void HandleThrowable()
     {
+        if (!canThrow)
+            return;
+
         if (throwablePrefabs.Length == 0 || playerThrowTransform == null)
         {
             Debug.LogWarning("Missing throwable prefabs or throw transform.");
             return;
         }
 
+        canThrow = false; 
+        StartCoroutine(ResetThrowCooldown()); 
+
         AudioManager.Instance.RandomiseActionSound("throw", 1, 1f, 0f, 1f);
         int randomIndex = UnityEngine.Random.Range(0, throwablePrefabs.Length);
         GameObject chosenPrefab = throwablePrefabs[randomIndex];
 
-
         Quaternion throwRotation = Quaternion.LookRotation(playerThrowTransform.forward, Vector3.up);
-
         GameObject throwable = Instantiate(chosenPrefab, playerThrowTransform.position, throwRotation);
-        
 
         Rigidbody rb = throwable.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.AddForce(playerThrowTransform.forward * throwForce, ForceMode.Impulse);
         }
-
     }
+
+    private IEnumerator ResetThrowCooldown()
+    {
+        yield return new WaitForSeconds(throwCooldown);
+        canThrow = true;
+    }
+
     public IEnumerator TriggerRumble(float lowFrequency, float highFrequency, float duration)
     {
         if (isController)

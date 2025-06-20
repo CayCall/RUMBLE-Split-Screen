@@ -128,6 +128,37 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &992829429519184173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7808746104146552430}
+  m_Layer: 10
+  m_Name: ThrowTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7808746104146552430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992829429519184173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8500778928661221085}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702989511212197057
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +192,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.15, z: -0.005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7808746104146552430}
   m_Father: {fileID: 800937322053544435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &144563828230477412
@@ -897,9 +929,9 @@ GameObject:
   - component: {fileID: 8859674789070611619}
   - component: {fileID: 6452079464368068399}
   - component: {fileID: 9028721900726642957}
-  - component: {fileID: 1024999219751698587}
   - component: {fileID: 773797823289705694}
   - component: {fileID: 2813023711495679906}
+  - component: {fileID: 179716628580500724}
   m_Layer: 10
   m_Name: Player 2
   m_TagString: Player
@@ -999,10 +1031,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4802208
+  m_Radius: 0.45709634
   m_Height: 1.6399226
   m_Direction: 1
-  m_Center: {x: -0.11413598, y: -0.1800387, z: -0.32645035}
+  m_Center: {x: -0.080792725, y: -0.1800387, z: -0.5040095}
 --- !u!54 &6452079464368068399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1176,29 +1208,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player2
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1024999219751698587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3446152501043402247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867aceff82f2bf14c8906272f51d9de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedTile: {fileID: 0}
-  moveSpeed: 1.92
-  raycastDistance: 15
-  HoverMaterial: {fileID: 2100000, guid: 5eee5d891d0634f49aabee3c401c6689, type: 2}
-  StandardMaterial: {fileID: 2100000, guid: 1598c4db83ffdb24f882bf62e871343f, type: 2}
-  Camera: {fileID: 1702989511212197057}
-  SmokeVfx: {fileID: 3496496029925515223, guid: 10165f8e27d3a8d44b82428cbeb49bef, type: 3}
-  PlayerInput: {fileID: 9028721900726642957}
-  ActiveTile: {fileID: 0}
-  PlayerAnimator: {fileID: 4187525974606242155}
-  CooldownSlider: {fileID: 0}
 --- !u!82 &773797823289705694
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1322,6 +1331,35 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 3839627739363569249}
   PlayerAnimator: {fileID: 4187525974606242155}
+  playerThrowTransform: {fileID: 7808746104146552430}
+  throwablePrefabs:
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  throwForce: 10
+--- !u!114 &179716628580500724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3446152501043402247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ab0bf768b5bca45a4842d05c8f4b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedTile: {fileID: 0}
+  moveSpeed: 1.92
+  raycastDistance: 15
+  HoverMaterial: {fileID: 2100000, guid: 5eee5d891d0634f49aabee3c401c6689, type: 2}
+  StandardMaterial: {fileID: 2100000, guid: 1598c4db83ffdb24f882bf62e871343f, type: 2}
+  Camera: {fileID: 1702989511212197057}
+  SmokeVfx: {fileID: 3496496029925515223, guid: 10165f8e27d3a8d44b82428cbeb49bef, type: 3}
+  PlayerInput: {fileID: 9028721900726642957}
+  ActiveTile: {fileID: 0}
+  PlayerAnimator: {fileID: 4187525974606242155}
+  CooldownSlider: {fileID: 0}
 --- !u!1 &3545913366684598309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1768,7 @@ PrefabInstance:
     - target: {fileID: -2766037116575061823, guid: bb401195c9ba8764eab67f015c0cef16, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 876ed3be2b64e8140ab46fcb013af974, type: 2}
+      objectReference: {fileID: 2100000, guid: 6e3062fe47d51ec48b2e27e0e5c1ec17, type: 2}
     - target: {fileID: -2673219114036570659, guid: bb401195c9ba8764eab67f015c0cef16, type: 3}
       propertyPath: m_Layer
       value: 10

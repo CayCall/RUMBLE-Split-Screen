@@ -24,8 +24,8 @@ public class SceneManage : MonoBehaviour
 
     [SerializeField] private float timer = 0f;
     [SerializeField] private int currentTime = 0;
-    [SerializeField] private bool isLoaded = false;
-    [SerializeField] private bool isLoading = false; 
+    public bool isLoaded = false;
+    public bool isLoading = false; 
 
     private void Start()
     {
@@ -72,8 +72,10 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
     }
     
-   public void LoadScene()
+    public void LoadScene()
     {
+        Debug.Log("Button was clicked");
+
         if (isLoaded || isLoading) 
         {
             Debug.Log("One of the scene is already loading or has been loaded.");

@@ -30,10 +30,16 @@ public class ControllerLoadingMenuNav : MonoBehaviour
     }
 
     
-     private IEnumerator skipLoadingMenu()
-     {
-         yield return new WaitForSeconds(0.5f);
-        SceneManage.smInstance.LoadStartScene(); 
+    private IEnumerator skipLoadingMenu()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+
+        SceneManage.smInstance.isLoading = false;
+        SceneManage.smInstance.isLoaded = false;
+
+
+        SceneManage.smInstance.LoadStartScene();
     }
 
      private void onGui()

@@ -11,6 +11,16 @@ public class Throwable : MonoBehaviour
    private void Start()
    {
       forceAmount = 5000f;
+      Rigidbody rb = GetComponent<Rigidbody>();
+      if (rb != null)
+      {
+         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+      }
+   }
+
+   private void Update()
+   {
+      Debug.DrawRay(transform.position, GetComponent<Rigidbody>().linearVelocity.normalized * 5f, Color.yellow);
    }
 
    private void OnTriggerEnter(Collider other)
@@ -25,6 +35,10 @@ public class Throwable : MonoBehaviour
             StartCoroutine(ApplyForceGradually(playerRb, pushDirection, forceAmount, 0.5f));
          }
          StartCoroutine(DeleteAfterCollision());
+      }
+      if (other.CompareTag("Ground"))
+      {
+         Destroy(gameObject);
       }
       StartCoroutine(DeleteItem());
    }

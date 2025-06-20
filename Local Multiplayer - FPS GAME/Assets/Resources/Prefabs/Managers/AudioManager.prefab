@@ -51,5 +51,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1b934a00bdb120c4eb539573bf8c7a92, type: 3}
   - {fileID: 8300000, guid: b8faec1bded9be94bb1e0ce147ed9306, type: 3}
   landClips:
-  - {fileID: 8300000, guid: 562ae46880c1ae24099ea54de4e47112, type: 3}
   - {fileID: 8300000, guid: c8cf55547db1b314dbe7f9518f5e583d, type: 3}
+  - {fileID: 8300000, guid: 1a889d5afb2033b4997e58e06a1c6d4d, type: 3}
+  - {fileID: 8300000, guid: 2a9f6488a6b62e8438f12de4488654e4, type: 3}
+  ThrowClips:
+  - {fileID: 8300000, guid: ad96b721ef083f14fb25ec9438673938, type: 3}
+  - {fileID: 8300000, guid: bfa9ad43a6333034f9033b627cb066c4, type: 3}
+  - {fileID: 8300000, guid: a864391c207d1984daeacf78c491407e, type: 3}

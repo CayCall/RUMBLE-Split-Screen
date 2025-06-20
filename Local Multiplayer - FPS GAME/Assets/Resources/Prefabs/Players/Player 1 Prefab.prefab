@@ -64,6 +64,37 @@ Transform:
   - {fileID: 6598638319434946581}
   m_Father: {fileID: 6526768173562028978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &131623442825743427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6339054418214056710}
+  m_Layer: 10
+  m_Name: ThrowTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6339054418214056710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131623442825743427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8015880498271335637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &160713137347948138
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +689,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.15, z: -0.005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6339054418214056710}
   m_Father: {fileID: 7899611016283678652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8640551355859740529
@@ -2931,10 +2963,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4802208
+  m_Radius: 0.47098568
   m_Height: 1.6399226
   m_Direction: 1
-  m_Center: {x: -0.11413598, y: -0.1800387, z: -0.32645035}
+  m_Center: {x: -0.10016532, y: -0.1800387, z: -0.4916745}
 --- !u!54 &6561988459933851429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3104,7 +3136,7 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3254,6 +3286,12 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 7986000251815033873}
   PlayerAnimator: {fileID: 1844503260912604401}
+  playerThrowTransform: {fileID: 6339054418214056710}
+  throwablePrefabs:
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  - {fileID: 5683103028650874360, guid: feb319dab30ede24c8b6a79395cac757, type: 3}
+  throwForce: 10
 --- !u!1 &8143465539017385172
 GameObject:
   m_ObjectHideFlags: 0
