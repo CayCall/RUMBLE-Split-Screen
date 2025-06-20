@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public Camera PodiumCamera;
     public GameObject Podium;
     public GameObject Canvas;
+    public TextMeshProUGUI WinnerText;
     
     [Header("LiveGame Checks")]
     [Header("Scenes")]
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SceneManage.smInstance.WaitBeforeLoading());
         if (player == player1)
         {
-       
+            WinnerText.text = "Player 1 Wins!";
             player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
         }
         else if (player == player2)
         {
-
+            WinnerText.text = "Player 2 Wins!";
             player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
@@ -155,7 +156,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SceneManage.smInstance.WaitBeforeLoading());
         if (player == player1)
         {
-            
+            WinnerText.text = "Player 2 Wins!";
             player2.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
@@ -168,6 +169,7 @@ public class GameManager : MonoBehaviour
         }
         else if (player == player2)
         {
+            WinnerText.text = "Player 1 Wins!";
             player1.transform.position = new Vector3(Podium.transform.position.x, Podium.transform.position.y + 2, Podium.transform.position.z);
             player2.transform.position = new Vector3(Podium.transform.position.x - 1f, Podium.transform.position.y + 2, Podium.transform.position.z);
             player1.transform.rotation = Quaternion.Euler(0f, 360f, 0f);
